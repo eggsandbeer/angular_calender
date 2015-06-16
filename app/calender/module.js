@@ -1,6 +1,7 @@
 var calenderDemo = angular.module('calenderDemo', [
-  'calenderDemo.controllers',
   'angularMoment',
+  // 'calender',
+  'calenderDemo.controllers',
   'ngRoute'
 ]);
 
