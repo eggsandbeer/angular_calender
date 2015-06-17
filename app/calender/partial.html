@@ -2,4 +2,8 @@
   <calendar selected="day"></calendar>
   <diedirective>
   </diedirective>
+
+  {{day | date : fullDate }}
+
+  <h4 ng-bind="{{day | date:'MM/dd/yyyy'}}"></h4>
 <!-- </div> -->
