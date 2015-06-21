@@ -75,12 +75,103 @@ App.directive('calendar', function(){
   }
 });
 
-App.directive('diedirective', function() {
-    var directive = {};
+App.directive('helloWorld', function() {
+ return {
+   restrict: 'AE',
+   replace: false,
+   scope: {
+     color: '='
+   },
+   template: '<p style="background-color:{{color}}">Hello World',
+   compile: function(tEl, attrs){
+     console.log(tEl, attrs)
+     attrs.someAttribute = "Der"
+   },
+   link: function(scope, el, attrs){
+     console.log(attrs)
+     el.bind('click', function(){
+      //  el.css('background-color', 'white');
+       scope.$apply(function(){
+         scope.color = "red";
+       });
+     });
+     el.bind('mouseover', function(){
+       el.css('cursor', 'pointer');
+     });
+   }
+ };
+});
 
-    directive.restrict = 'E'; /* restrict this directive to elements */
+App.directive('outputText', function(){
+  return {
+    transclude: true,
+    scope: {},
+    template: '<div ng-transclude></div>'
+  }
+});
+App.factory('notesFactory', function() {
+  return {
+    put: function(note) {
+      localStorage.setItem('note' + note.id, JSON.stringify(note));
+      return this.getAll();
+    },
+    get: function(index) {
+      return JSON.parse(localStorage.getItem('note' + index));
+    },
+    getAll: function() {
+      var notes = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).indexOf('note') !== -1) {
+          var note = localStorage.getItem(localStorage.key(i));
+          notes.push(JSON.parse(note));
+        }
+      }
+      return notes;
+    }
+  };
+});
+App.directive('notepad', function(notesFactory){
+  return {
+    restrict: 'AE',
+    scope: {},
+    link: function(scope, elem, attrs){
+      scope.restore = function() {
+        scope.editMode = false;
+        scope.index = -1;
+        scope.noteText = '';
+      };
+      scope.openEditor = function(index) {
+        scope.editMode = true;
 
-    directive.template = "My first directive: {{textToInsert}}";
+        if (index !== undefined) {
+          scope.noteText = notesFactory.get(index).content;
+          scope.index = index;
+        } else {
+          scope.noteText = undefined;
+        }
+      };
+      scope.save = function() {
+        if (scope.noteText !== '') {
+          var note = {};
 
-    return directive;
+          note.title = scope.noteText.length > 10 ? scope.noteText.substring(0, 10) + '. . .' : scope.noteText;
+          note.content = scope.noteText;
+          note.id = scope.index != -1 ? scope.index : localStorage.length;
+          scope.notes = notesFactory.put(note);
+        }
+
+        scope.restore();
+      };
+      var editor = elem.find('#editor');
+
+      scope.restore();  // initialize our app controls
+      scope.notes = notesFactory.getAll(); // load notes
+
+      editor.bind('keyup keydown', function() {
+        scope.noteText = editor.text().trim();
+      });
+
+    },
+    templateUrl: 'calender/notes.html',
+  }
 });

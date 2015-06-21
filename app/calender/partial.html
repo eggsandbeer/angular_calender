@@ -1,9 +1,18 @@
-<!-- <div class="whatever" ng-controller="mainController"> -->
+<div class="whatever">
   <calendar selected="day"></calendar>
-  <diedirective>
-  </diedirective>
+
 
   {{day | date : fullDate }}
 
   <h4 ng-bind="{{day | date:'MM/dd/yyyy'}}"></h4>
-<!-- </div> -->
+
+  <input type="text" ng-model="color" placeholder="Enter a color" />
+  <hello-world color="color" />
+</div>
+
+
+
+
+
+<h1 class="title">The Note Making App</h1>
+<notepad/>

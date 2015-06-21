@@ -17,7 +17,13 @@
 </head>
 <body>
 
-
+  <div ng-controller="otherController">
+    {{ cheese }}
+  </div>
+  <div ng-controller="anotherController">
+    {{ power30 }}
+    <button type="button" name="button" ng-click="handleClick()">CLICK</button>
+  </div>
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
