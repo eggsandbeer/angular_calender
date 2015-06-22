@@ -38,10 +38,10 @@ flipper > div.flipper .back {
 }
 flipper > div.flipper .front {
   z-index:2;
-  background:#19489E;
+  background:yellowgreen;
 }
 flipper > div.flipper .back {
-  background:#9E1919;
+  background:rebeccapurple;
 }
 flipper[horizontal] .front {
   transform: rotateY(0deg);
@@ -55,6 +55,9 @@ flipper[horizontal] div.flipper.flipped .front {
 flipper[horizontal] div.flipper.flipped .back {
   transform: rotateY(0deg);
 }
+
+
+
 flipper[vertical] .front {
   transform: rotateX(0deg);
 }
