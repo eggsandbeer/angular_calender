@@ -17,6 +17,27 @@
 </head>
 <body>
 
+  <div ng-controller="flipperDemo">
+    <flipper flipped="flipped" horizontal>
+    	<front>
+    		the front!
+    	</front>
+    	<back>
+    		the back!
+    	</back>
+    </flipper>
+
+    <flipper flipped="flipped" vertical>
+    	<div class="front tile">
+    		the front!
+    	</div>
+    	<div class="back tile">
+    		the back!
+    	</div>
+    </flipper>
+    <button type="button" name="button" ng-click="flip()">FLIP</button>
+  </div>
+
   <div ng-controller="otherController">
     {{ cheese }}
   </div>

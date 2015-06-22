@@ -175,3 +175,31 @@ App.directive('notepad', function(notesFactory){
     templateUrl: 'calender/notes.html',
   }
 });
+
+
+App.directive('flipper', function(){
+  return {
+    restrict: "E",
+    template: "<div class='flipper' ng-transclude ng-class='{flipped: flipped}'></div>",
+    transclude: true,
+    scope: {
+      flipped: "="
+    }
+  };
+});
+
+App.directive('front', function(){
+  return {
+    restrict: "E",
+    template: "<div class='front tile' ng-transclude></div>",
+    transclude: true
+  };
+});
+
+App.directive('back', function(){
+  return {
+    restrict: "E",
+    template: "<div class='back tile' ng-transclude></div>",
+    transclude: true
+  };
+});

@@ -1,3 +1,73 @@
+.tile {
+  color:white;
+  padding:15px;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+}
+
+flipper {
+  float:left;
+  width:250px;
+  height:250px;
+  margin-right:15px;
+  display:block;
+  perspective:1000;
+}
+flipper span {
+  color: white;
+}
+flipper > div.flipper {
+  float:left;
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+}
+flipper > div.flipper .front,
+flipper > div.flipper .back {
+  float:left;
+  display:block;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  transform-style:preserve-3d;
+  transition:transform ease 500ms;
+}
+flipper > div.flipper .front {
+  z-index:2;
+  background:#19489E;
+}
+flipper > div.flipper .back {
+  background:#9E1919;
+}
+flipper[horizontal] .front {
+  transform: rotateY(0deg);
+}
+flipper[horizontal] .back {
+  transform: rotateY(-180deg);
+}
+flipper[horizontal] div.flipper.flipped .front {
+  transform: rotateY(180deg);
+}
+flipper[horizontal] div.flipper.flipped .back {
+  transform: rotateY(0deg);
+}
+flipper[vertical] .front {
+  transform: rotateX(0deg);
+}
+flipper[vertical] .back {
+  transform: rotateX(-180deg);
+}
+flipper[vertical] div.flipper.flipped .front {
+  transform: rotateX(180deg);
+}
+flipper[vertical] div.flipper.flipped .back {
+  transform: rotateX(0deg);
+}
+
 /* app css stylesheet */
 
 .menu {

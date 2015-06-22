@@ -43,7 +43,12 @@ calender_controllers.controller('mainController', function($scope, moment){
   $scope.color = "green";
   $scope.name = 'World';
   $scope.hobby='AngularJS';
+});
 
 
-
+App.controller('flipperDemo', function($scope){
+  $scope.flipped = false;
+  $scope.flip = function(){
+    $scope.flipped = !$scope.flipped;
+  }
 });
